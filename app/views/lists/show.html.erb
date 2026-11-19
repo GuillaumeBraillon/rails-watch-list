@@ -1,0 +1,21 @@
+<h1><%= @list.name %></h1>
+<p>Nombre de films : <%= @movies.count %></p>
+<ul>
+  <% @bookmarks.each do |bookmark| %>
+    <li>
+      <strong><%= bookmark.movie.title %></strong>
+      — <%= bookmark.movie.overview %>
+      <% if bookmark.comment.present? %>
+        (<%= bookmark.comment %>)
+      <% end %>
+      <%= link_to "Delete",
+        bookmark_path(bookmark),
+        data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+  <%= f.association :movie, collection: Movie.order(:title), prompt: "Ajout un film" %>
+  <%= f.input :comment %>
+  <%= f.button :submit, "Ajouter le film" %>
+<% end %>
