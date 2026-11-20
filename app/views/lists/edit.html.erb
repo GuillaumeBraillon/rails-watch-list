@@ -1,0 +1,32 @@
+<div class="container py-4">
+  <div class="card border-0 shadow w-75 mx-auto">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h4 fw-bold mb-0">Edit the list</h1>
+        <%= link_to "Back to the list", list_path(@list), class: "text-decoration-none text-body-tertiary small" %>
+      </div>
+      <% if @list.photo.attached? %>
+        <div class="mb-3">
+          <p class="fw-light text-body-tertiary small mb-1">Current photo</p>
+          <%= cl_image_tag @list.photo.key,
+              crop: :fill,
+              class: "rounded w-100 object-fit-cover",
+              style: "height: 160px; object-position: top;" %>
+        </div>
+      <% end %>
+      <%= simple_form_for @list do |f| %>
+        <%= f.input :name,
+            label_html: { class: "fw-light text-body-tertiary small" } %>
+        <%= f.input :photo,
+            as: :file,
+            hint: "Leave blank to preserve the current image",
+            hint_html: { class: "fw-light text-body-tertiary small" },
+            label_html: { class: "fw-light text-body-tertiary small" } %>
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <%= link_to "Cancel", list_path(@list), class: "btn btn-outline-secondary btn-sm px-3" %>
+          <%= f.button :submit, "Save", class: "btn btn-dark btn-sm px-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

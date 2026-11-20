@@ -10,12 +10,14 @@
       <h1 class="fw-bold mb-1"><%= @list.name %></h1>
       <p class="fw-light text-white-50 small mb-0">Nombre de films : <%= @movies.count %></p>
     </div>
-    <%= link_to "Return", lists_path, class: "btn btn-light btn-sm text-decoration-none flex-shrink-0" %>
+    <div class="d-flex gap-2 flex-shrink-0">
+      <%= link_to "Modifier", edit_list_path(@list), class: "btn btn-outline-light btn-sm text-decoration-none" %>
+      <%= link_to "Return", lists_path, class: "btn btn-light btn-sm text-decoration-none flex-shrink-0" %>
+    </div>
   </div>
 </div>
 <div class="container px-4 pb-5">
   <div class="row g-4 align-items-start">
-    <%# Colonne gauche : films de la liste %>
     <div class="col-12 col-lg-8">
       <div class="row g-4">
         <% @bookmarks.each do |bookmark| %>

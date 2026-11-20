@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-    before_action :set_list, only: [ :show ]
+    before_action :set_list, only: [ :show, :edit, :update ]
 
   def index
     @lists = List.all
@@ -24,6 +24,17 @@ end
       redirect_to list_path(@list)
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @list.update(list_params)
+      redirect_to list_path(@list), notice: "List updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
