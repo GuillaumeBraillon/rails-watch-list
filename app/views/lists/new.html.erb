@@ -1,5 +1,22 @@
-<h1>New list</h1>
-<%= simple_form_for @list do |f| %>
-  <%= f.input :name %>
-  <%= f.submit "Submit list", class: "btn btn-primary" %>
-<% end %>
+<div class="container py-4">
+  <div class="card border-0 shadow w-75 mx-auto">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="h4 fw-bold mb-0">New list</h1>
+        <%= link_to "Back to lists", lists_path, class: "text-decoration-none text-body-tertiary small" %>
+      </div>
+      <%= simple_form_for @list do |f| %>
+        <%= f.input :name,
+            placeholder: "e.g. Classic Sci-Fi, Comfort Movies...",
+            label_html: { class: "fw-light text-body-tertiary small" } %>
+        <%= f.input :photo,
+            as: :file,
+            label_html: { class: "fw-light text-body-tertiary small" } %>
+        <div class="d-flex justify-content-end gap-2 mt-4">
+          <%= link_to "Cancel", lists_path, class: "btn btn-outline-secondary btn-sm px-3" %>
+          <%= f.button :submit, "Submit list", class: "btn btn-dark btn-sm px-3" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
