@@ -14,6 +14,8 @@ def show
   @movie = Movie.new
   @bookmarks = @list.bookmarks
   @bookmark = Bookmark.new
+  @reviews = @list.reviews
+  @review = Review.new
 end
 
   def create
